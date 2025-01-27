@@ -4,18 +4,16 @@ const dotenv = require("dotenv")
 const cors = require('cors');
 const mongoose = require('mongoose');
 app.use(cors());
-dotenv.config();
 // Add this middleware to parse JSON bodies
 app.use(express.json());
-
-
-
+dotenv.config(); 
 
 const auth = require('./modules/auth/routes/auth');
 
 app.use('/api/auth', auth);
 
 // Connect to MongoDB
+console.log(process.env.MONGO_URI)
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
